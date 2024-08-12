@@ -1,0 +1,255 @@
+<html>
+ <head>
+  <script>
+if(window.history.replaceState) 
+{
+window.history.replaceState(null,null,window.location.href);
+}
+</script>
+    <style>
+    {
+        box-sizing: border-box;
+    }
+    .column {
+    float: left;
+    width: 50%;
+    font-family: "Lucida Console", "Courier New", monospace;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    .column output{
+      position: relative;
+      top: -5px;
+
+    }
+   .column label{
+      position: relative;
+      top: -5px;
+
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 60%;
+        height: 20px;
+        border-radius: 10px;  
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        
+      }
+      
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%; 
+        background: #04AA6D;
+        cursor: pointer;
+      }
+      
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #04AA6D;
+        cursor: pointer;
+      }
+      .button_big {
+        background-color: #04AA6D;
+        color: black;
+        border: 2px solid #04AA6D; 
+        border-radius: 4px;
+        padding: 12px 28px;
+        font-weight: 600;
+    }
+    .button_big:hover {
+      background-color: white;
+
+    }
+    .button_slim {
+      background-color: #04AA6D;
+        color: black;
+        border: 2px solid #04AA6D; 
+        border-radius: 4px;
+        padding: 4px 20px;
+  }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider1 {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #d3d3d3;
+      -webkit-transition: .4s;
+      transition: .4s;
+      margin-bottom 
+    }
+    
+    .slider1:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider1 {
+      background-color: #04AA6D;
+    }
+    
+    input:focus + .slider1 {
+      box-shadow: 0 0 1px #04AA6D;
+    }
+    
+    input:checked + .slider1:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    .slider1.round {
+      border-radius: 34px;
+    }
+    
+    .slider1.round:before {
+      border-radius: 50%;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      z-index: -1;
+  }
+  
+  th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {background-color:#f5f5f5;}
+    </style>
+ </head>
+ <body>
+    <div class="row">
+        <div class="column">
+          <form method="POST" name="settings">
+
+          <input type="range" id="smin" name="smin" min="0" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[0] }}>
+          <output>{{ settings[0] }}</output>
+          <label for="smin">Smin</label>
+
+          <input type="range" id="vmin" name="vmin" min="0" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[1] }}>
+          <output>{{ settings[1] }}</output>
+          <label for="vmin">Vmin</label>
+
+          <input type="range" id="smax" name="smax" min="0" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[2] }}>
+          <output>{{ settings[2] }}</output>
+          <label for="smax">Smax</label>
+   
+          <input type="range" id="vmax" name="vmax" min="0" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[3] }}>
+          <output>{{ settings[3] }}</output>
+          <label for="vmax">Vmax</label>
+
+          <input type="range" id="Areamin" name="Areamin" min="1" max="307200" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[4] }}>
+          <output>{{ settings[4] }}</output>
+          <label for="Areamin">Min area</label>
+
+          <input type="range" id="Areamax" name="Areamax" min="1" max="307200" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[5] }}>
+          <output>{{ settings[5] }}</output>
+          <label for="Areamax">Max area</label>
+          
+          <input type="range" id="Exposure" name="Exposure" min="1" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[6] }}>
+          <output>{{ settings[6] }}</output>
+          <label for="Exposure">Exposure</label>
+          
+          <input type="range" id="Contrast" name="Contrast" min="1" max="255" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[8] }}>
+          <output>{{ settings[8] }}</output>
+          <label for="Contrast">Contrast</label>
+
+          <input type="range" id="Whitebalance" name="Whitebalance" min="1" max="10000" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[7] }}>
+          <output>{{ settings[7] }}</output>
+          <label for="Whitebalance">White balance</label>
+          
+          <input type="range" id="Open" name="Open" min="1" max="50" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[9] }}>
+          <output>{{ settings[9] }}</output>
+          <label for="Open">Open</label>
+          
+          <input type="range" id="Close" name="Close" min="1" max="50" class="slider" oninput = "this.nextElementSibling.value = this.value" onchange="this.form.submit()" value={{ settings[10]}}>
+          <output>{{ settings[10] }}</output>
+          <label for="Close">Close</label>
+
+        
+        <div style="position: relative; top: 14px;">
+          
+          <label class="switch">
+            <input type="checkbox" id="aruco" name="aruco" onchange="this.form.submit()" {% if settings[11] == 1 %} checked {% endif %}>
+            <span class="slider1 round"></span>
+          </label>
+        </div>
+            <div style="display: inline-block;">
+              <label style="position: relative; top: -14px; left: 65px;">Switch to Aruco tag recognition</label>
+            </div>
+        </form>
+        
+        <div>
+          <form method="POST">
+            <table>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Hmin</th>
+                <th>Hmax</th>
+                <th> </th>
+              </tr>
+              {%for i in range(0, h_len)%}
+              <tr>
+                <td>{{ i }}</td>
+                <td><input type="text" id="table_{{ i }}_0" name="table_{{ i }}_0" size="10" value="{{  h_list[i][0] }}"></td>
+                <td><input type="text" id="table_{{ i }}_1" name="table_{{ i }}_1" size="10" value="{{  h_list[i][1] }}"></td>
+                <td><input type="text" id="table_{{ i }}_2" name="table_{{ i }}_2" size="10" value="{{  h_list[i][2] }}"></td>
+                <input type="hidden" id="delete_row" name="delete_row" value="0"/>
+                <td><button onclick="getElementById('delete_row').value = '{{ i + 1 }}'; this.form.submit()" class = "button_slim">Delete</button></td>
+              </tr>
+              {%endfor%}
+            </table>
+        </div>
+
+          <input type="hidden" id="command" name="command" value="0"/>
+          <button onclick="getElementById('command').value = '4'; this.form.submit()" class = "button_big">Add color</button>
+          <button onclick="getElementById('command').value = '3'; this.form.submit()" class = "button_big">Send table</button>
+          <button onclick="getElementById('command').value = '2'; this.form.submit()" class = "button_big">Save</button>
+          <button onclick="getElementById('command').value = '1'; this.form.submit()" class = "button_big">Reset</button>
+        </form>
+      </div>
+      <div class="column">
+        <img src="http://{{ ip }}:5001/stream.mjpg" width="640" height="480" autoplay playsinline>
+      </div>
+    </div>
+  </body>
+</html>
